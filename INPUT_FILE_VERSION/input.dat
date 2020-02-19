@@ -1,0 +1,6 @@
+filename: terrasp.jpg
+scale: 3.0 
+Binary_thresh_minvalue: 150
+Binary_thresh_maxvalue: 255 
+Area_filter_minvalue: 500 
+Area_filter_maxvalue: 9999999
