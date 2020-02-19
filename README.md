@@ -15,7 +15,6 @@
 + A subfolder "split" : all features detected by the program
 + time_data.txt : individual information for all computed parameters derived from detected features : Lenght, Width, area perimeter and centroid coordinates.
 + filename.tif  : the original image with overlaped contours, boxed features and identifier annotations 
-+ filename.tif  : the original image with overlaped contours, boxed features and identifier annotations 
 + histogram.png : image of histograms for all parameters: Lenght, Width, area and perimeter
 + box.png       : image of box plots for all computed parameters derived from detected features : Lenght, Width, area and perimeter
 -----------------------------------------------------------------------------------------------------------------------------
