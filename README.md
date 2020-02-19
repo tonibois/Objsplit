@@ -4,7 +4,7 @@
 
  Author: Antonio Oliver Gelabert (ORCID : http://orcid.org/0000-0001-8571-2733)
 
- Parameters
+**Parameters**
 -----------------------------------------------------------------------------------------------------------------------------
 + sc : scale conversion (in units/pixel)
 + tmin : minimum binary threshold for object detection
@@ -17,7 +17,7 @@
 + Sample image (JPG,PNG,TIF,GIF)
 + Input file with parameters (in INPUT_FILE_VERSION only)
 -----------------------------------------------------------------------------------------------------------------------------
-**Outputs** : In a labeled (out_+time) created folder
+**Outputs** (In a labeled "out_+time" created folder)
 + A subfolder "split" : all features detected by the program
 + time_data.txt : individual information for all computed parameters derived from detected features : Lenght, Width, area perimeter and centroid coordinates.
 + filename.tif  : the original image with overlaped contours, boxed features and identifier annotations 
@@ -25,7 +25,7 @@
 + histogram.png : image of histograms for all parameters: Lenght, Width, area and perimeter
 + box.png       : image of box plots for all computed parameters derived from detected features : Lenght, Width, area and perimeter
 -----------------------------------------------------------------------------------------------------------------------------
-*Program Variants*
+**Program Variants**
  -----------------------------------------------------------------------------------------------------------------------------
  + INPUT_FILE_VERSION/objsplit_inpfilevers.py   : Version that read parameters in input.dat file and process specific image
  + ARG_PARSED_VERSION/objsplit_argp.py          : Version to pass commands directly from the command line and process specific image
