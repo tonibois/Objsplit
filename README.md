@@ -5,15 +5,6 @@
  Author: Antonio Oliver Gelabert (ORCID : http://orcid.org/0000-0001-8571-2733)
  
 -----------------------------------------------------------------------------------------------------------------------------
-**Parameters**
------------------------------------------------------------------------------------------------------------------------------
-+ sc : scale conversion (in units/pixel)
-+ tmin : minimum binary threshold for object detection
-+ tmax : maximum binary threshold for object detection
-+ fmin : minimum area filter (in units**2)
-+ fmax : maximum area filter (in units**2)
-+ f   : filename of the input file
------------------------------------------------------------------------------------------------------------------------------
 **Input**
 -----------------------------------------------------------------------------------------------------------------------------
 + Sample image (JPG,PNG,TIF,GIF)
@@ -33,6 +24,17 @@
  + INPUT_FILE_VERSION/objsplit_inpfilevers.py   : Version that read parameters in input.dat file and process specific image
  + ARG_PARSED_VERSION/objsplit_argp.py          : Version to pass commands directly from the command line and process specific image
  + BATCH_VERSION/objsplit_batch.py              : Takes all images in specified directory and process all of them
+ + objsplit.ipynb                               : Original version in ipython notebook format
+ + objsplit.py                                  : Original version in python source code
+ -----------------------------------------------------------------------------------------------------------------------------
+**Parameters**
+ -----------------------------------------------------------------------------------------------------------------------------
++ sc : scale conversion (in units/pixel)
++ tmin : minimum binary threshold for object detection
++ tmax : maximum binary threshold for object detection
++ fmin : minimum area filter (in units**2)
++ fmax : maximum area filter (in units**2)
++ f   : filename of the input file
  -----------------------------------------------------------------------------------------------------------------------------
 **Usage examples**
  -----------------------------------------------------------------------------------------------------------------------------
