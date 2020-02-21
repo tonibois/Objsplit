@@ -15,6 +15,8 @@
 #   f   : filename of the input file
 # -----------------------------------------------------------------------------------------------------------------------------
 
+from datetime import datetime
+import time as tm
 import time
 import os
 import sys
@@ -23,6 +25,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import warnings
 import argparse
+
+
+t0= tm.clock()
 
 # Parsing optional arguments of the program  
 ap = argparse.ArgumentParser()
@@ -145,6 +150,46 @@ for j in range(0,len(contours)-1,1):
 
 cv2.imwrite("out_"+dirstr+"/"+dirstr+"_allcont.tif", contpic)
 f2.close()
+# Initial set of parameters and statistical information 
+
+f3 = open("out_"+dirstr+"/"+dirstr+"_parameters_and_outputs.txt", 'w')
+
+# Cabecera del programa
+now = datetime.now() 
+year = now.strftime("%Y")
+month = now.strftime("%m")
+day = now.strftime("%d")
+time = now.strftime("%H:%M:%S")
+
+f3.write("************************************************************************************************************"+'\n')
+f3.write("************************************************************************************************************"+'\n')
+f3.write("This ouput has been generated on " + day +"th of " + month + " of year " + year + ", at local time: " + time +'\n')
+f3.write("************************************************************************************************************"+'\n')
+f3.write("************************************************************************************************************"+'\n')
+f3.write("OBJECT DETECTOR&COUNTER IN IMAGES"+'\n')
+f3.write("************************************************************************************************************"+'\n')
+f3.write("************************************************************************************************************"+'\n')
+f3.write("Author                : Antonio Oliver Gelabert"+'\n')
+f3.write("Contact               : toni.oliver87@gmail.com"+'\n')
+f3.write("************************************************************************************************************"+'\n')
+f3.write("*****************************          PARAMETERS         **************************************************"+'\n')
+f3.write("************************************************************************************************************"+'\n')
+f3.write("Filename : "+fname_sb+'\n')
+f3.write("Scale : "+str(scale)+" (reference in units/pixel)\n")
+f3.write("Minimum intensity threshold : "+str(tresh_8b_min)+'\n')
+f3.write("Maximum intensity threshold : "+str(tresh_8b_max)+'\n')
+f3.write("Minimum area filter : "+str(filtareamin)+'\n')
+f3.write("Maximum area filter :" +str(filtareamax)+'\n')
+f3.write("************************************************************************************************************"+'\n')
+f3.write("*****************************           OUTPUTS           **************************************************"+'\n')
+f3.write("************************************************************************************************************"+'\n')
+f3.write("Number of objects found: "+str(len(contours))+'\n') 
+f3.write("Average leght of objects found (in units): "+ str(round(np.mean(Lboxst),2))+"+/-"+str(round(np.std(Lboxst),2))+'\n')
+f3.write("Average width of objects found (in units): "+ str(round(np.mean(Wboxst),2))+"+/-"+str(round(np.std(Wboxst),2))+'\n')
+f3.write("Average area of objects found (in units**2): "+ str(round(np.mean(areafstats),2))+"+/-"+str(round(np.std(areafstats),2))+'\n')
+f3.write("Average perimeter of objects found (in units): "+ str(round(np.mean(perfstats),2))+"+/-"+str(round(np.std(perfstats),2))+'\n')
+f3.write("************************************************************************************************************"+'\n')
+f3.write("************************************************************************************************************"+'\n')
 
 # Statistical analysis plots
 # create a figure 
@@ -186,3 +231,8 @@ fig2.subplots_adjust(hspace=.5,wspace=0.5)
 plt.savefig("out_"+dirstr+"/"+dirstr+"_boxsplot.png",dpi=200)
 
 
+t1 = tm.clock()
+f3.write("Job time (s) : "+ str(np.round(t1 - t0,2))+'\n') 
+f3.write("************************************************************************************************************"+'\n')
+f3.write("************************************************************************************************************"+'\n')
+f2.close()
