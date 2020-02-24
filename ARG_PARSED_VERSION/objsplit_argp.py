@@ -7,12 +7,13 @@
 # -----------------------------------------------------------------------------------------------------------------------------
 # Parameters
 # -----------------------------------------------------------------------------------------------------------------------------
-#   sc : scale conversion (in units/pixel)
-#   tmin : minimum binary threshold for object detection
-#   tmax : maximum binary threshold for object detection
-#   fmin : minimum area filter (in units**2)
-#   fmax : maximum area filter (in units**2)
-#   f   : filename of the input file
+#   sc    : scale conversion (in units/pixel)
+#   tmin  : minimum binary threshold for object detection
+#   tmax  : maximum binary threshold for object detection
+#   fmin  : minimum area filter (in units**2)
+#   fmax  : maximum area filter (in units**2)
+#   f     : filename of the input file
+#   split : Split or not in separated outputs the objects found 
 # -----------------------------------------------------------------------------------------------------------------------------
 
 from datetime import datetime
@@ -37,6 +38,7 @@ ap.add_argument("-tmax", "--tmax", required=False, default='255', help="High thr
 ap.add_argument("-fmin", "--filtmin", required=False, default='500', help="Mininum area filter (in units**2). Default value:500 pixels")
 ap.add_argument("-fmax", "--filtmax", required=False, default='99999999', help="maximum area filter (in units**2). Default value:no limit")
 ap.add_argument("-f", "--filename", required=True, help="Filename of input images. ")
+ap.add_argument("-split", "--split", required=False, default='n', help="Split (y) or not (n) in separated outputs the objects found. Default: no")
 args = vars(ap.parse_args())
 
 # Assign args to program variables
@@ -47,10 +49,12 @@ tresh_8b_min=int(args["tmin"])
 tresh_8b_max=int(args["tmax"])
 filtareamin=int(args["filtmin"])/(scale*scale)
 filtareamax=int(args["filtmax"])/(scale*scale)
+splitb=args["split"]
 
 dirstr=str(round(time.time()))
 os.mkdir("out_"+dirstr)
-os.mkdir("out_"+dirstr+"/split")
+if(splitb == "y"):
+    os.mkdir("out_"+dirstr+"/split")
 
 f2 = open("out_"+dirstr+"/"+dirstr+"_ind_data.txt", 'w')
 f2.write('ID,L(km),W(km),Area(km2),perimeter(km),xc,yc\n')
@@ -144,8 +148,10 @@ for j in range(0,len(contours)-1,1):
         #cv2.putText(contpic, str(round(area,2)), (int(round((pm0x+pm2x)*0.5)+5),int(round((pm2y+pm0y)*0.5))), font, 0.3, (255, 0, 0), 1, cv2.LINE_AA)
         cv2.putText(contpic, str(nfilt), (int(round((pm0x+pm2x)*0.5)+5),int(round((pm2y+pm0y)*0.5))), font, 0.3, (255, 0, 0), 1, cv2.LINE_AA)
         cv2.drawContours(contpic, contours[j], -1, (255, 0, 0), 1)
-        cv2.drawContours(contpic,[box],0,(0,255,255),1) 
-        cv2.imwrite("out_"+dirstr+"/split/filtobj_"+str(nfilt)+".tif", contpic[yminb:ymaxb,xminb:xmaxb,:])
+        cv2.drawContours(contpic,[box],0,(0,255,255),1)
+        if(splitb == "y"):
+            cv2.imwrite("out_"+dirstr+"/split/filtobj_"+str(nfilt)+".tif", contpic[yminb:ymaxb,xminb:xmaxb,:])
+
         f2.write(str(nfilt)+','+str(round(Lbox,2))+','+str(round(Wbox,2))+','+str(round(area,2))+','+str(round((pm0x+pm2x)*0.5,2))+','+str(round((pm2y+pm0y)*0.5,2))+'\n')
 
 cv2.imwrite("out_"+dirstr+"/"+dirstr+"_allcont.tif", contpic)
