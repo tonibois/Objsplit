@@ -12,11 +12,12 @@
 -----------------------------------------------------------------------------------------------------------------------------
 **Outputs** (In a labeled "out_+time" created folder)
 -----------------------------------------------------------------------------------------------------------------------------
-+ A subfolder "split" : all features detected by the program
-+ time_data.txt : individual information for all computed parameters derived from detected features : Lenght, Width, area perimeter and centroid coordinates.
-+ filename.tif  : the original image with overlaped contours, boxed features and identifier annotations 
-+ histogram.png : image of histograms for all parameters: Lenght, Width, area and perimeter
-+ box.png       : image of box plots for all computed parameters derived from detected features : Lenght, Width, area and perimeter
++ A subfolder "split" : all features detected by the program (Optional. Default => None)
++ timestr_parameters_and_outputs.txt : Parameter set and statistical output information file.
++ timestr_data.txt : individual information for all computed parameters derived from detected features : Lenght, Width, area perimeter and centroid coordinates.
++ timestr_allcont.tif  : the original image with overlaped contours, boxed features and identifier annotations 
++ timestr_histogram.png : image of histograms for all parameters: Lenght, Width, area and perimeter
++ timestr_box.png       : image of box plots for all computed parameters derived from detected features : Lenght, Width, area and perimeter
 -----------------------------------------------------------------------------------------------------------------------------
 **Program Variants**
  -----------------------------------------------------------------------------------------------------------------------------
@@ -34,6 +35,7 @@
 + fmin : minimum area filter (in units**2)
 + fmax : maximum area filter (in units**2)
 + f   : filename of the input file
++ split : Split or not in separated outputs
  -----------------------------------------------------------------------------------------------------------------------------
 **Usage examples**
  -----------------------------------------------------------------------------------------------------------------------------
