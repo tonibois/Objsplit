@@ -16,6 +16,7 @@
 + timestr_parameters_and_outputs.txt : Parameter set and statistical output information file.
 + timestr_data.txt : individual information for all computed parameters derived from detected features : Lenght, Width, area perimeter and centroid coordinates.
 + timestr_allcont.tif  : the original image with overlaped contours, boxed features and identifier annotations 
++ timestr_binary.tif   : masked image file (black/white)
 + timestr_histogram.png : image of histograms for all parameters: Lenght, Width, area and perimeter
 + timestr_box.png       : image of box plots for all computed parameters derived from detected features : Lenght, Width, area and perimeter
 -----------------------------------------------------------------------------------------------------------------------------
